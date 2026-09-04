@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Public Context2Card Output",
+  "type": "object",
+  "required": ["case_id", "card_type", "decision", "need_record", "decision_reasons"],
+  "properties": {
+    "case_id": {"type": "string"},
+    "card_type": {"enum": ["event", "poi"]},
+    "decision": {"enum": ["serve", "stay_silent"]},
+    "need_record": {"type": "object"},
+    "card": {"type": ["object", "null"]},
+    "decision_reasons": {"type": "array", "items": {"type": "string"}}
+  }
+}

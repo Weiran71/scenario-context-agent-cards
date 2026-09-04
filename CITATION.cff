@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+title: "Context2Card: A Scenario-Aware Agent Card Generation Framework"
+message: "If this public research prototype is released, please cite it using this file."
+type: software
+authors:
+  - name: "Project contributors"
+abstract: "A synthetic-data framework for generating and evaluating proactive event reminder and POI recommendation cards from user situation and context."
+license: "TBD after release review"
+version: "unreleased"
+

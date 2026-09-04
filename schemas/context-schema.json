@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Public Context2Card Context",
+  "type": "object",
+  "required": ["user", "environment"],
+  "properties": {
+    "user": {"type": "object", "required": ["local_status", "preference_tags"]},
+    "environment": {"type": "object", "required": ["district", "local_hour", "weather"]},
+    "event": {"type": "object"},
+    "poi_candidates": {"type": "array", "items": {"type": "object"}}
+  }
+}
