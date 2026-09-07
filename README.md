@@ -165,6 +165,12 @@ Context
 - 结构与结果校验器；
 - 评测字段和负向抑制示例。
 
+## 在线成果
+
+- [Hugging Face Dataset](https://huggingface.co/datasets/LiuXinYan111/scenario-context-agent-cards)：四个配置、40 条完全合成的正向 / 负向 Case。
+- [Hugging Face Space 页面](https://huggingface.co/spaces/LiuXinYan111/scenario-context-agent-cards-demo)：公开 Static Space 源码与文件。
+- [在线 Demo](https://liuxinyan111-scenario-context-agent-cards-demo.static.hf.space/index.html)：在浏览器中切换卡片类型、Case，并调整时间、天气和偏好。
+
 ## 快速运行
 
 项目只依赖 Python 3 标准库：
