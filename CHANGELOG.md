@@ -8,3 +8,4 @@
 - 扩充 README：补充问题定义、用户价值、核心亮点、两类卡片完整生产流程、输出契约、评测方式和限制说明。
 - Hugging Face Dataset 已发布四配置（正/负向 × 两类卡片）；因免费账号不提供 Gradio 计算资源，Space 改为浏览器端 Static Demo，支持调整时间、天气和偏好并保持合成数据与权利声明边界。
 - Hugging Face Dataset 与 Static Space 已完成公开发布和在线验证；README 与资产总览补充正式链接。
+- Static Demo 增加运行状态反馈：点击“运行 Case”后显示最近运行的 Case 与时间，避免输入未变化时用户误以为按钮无响应。
