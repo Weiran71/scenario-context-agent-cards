@@ -5,3 +5,6 @@ __pycache__/
 dist/
 build/
 
+# Hugging Face publishing worktrees are maintained and published separately.
+hf_dataset/
+hf_space/
