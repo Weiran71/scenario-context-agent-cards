@@ -187,6 +187,7 @@ python3 validators/validate_outputs.py examples/generated_outputs.jsonl
 ```text
 docs/       方法与责任使用说明
             技术报告母稿：docs/technical-report.md
+            详细技术报告母稿：docs/technical-report-detailed.md
 schemas/    输入输出结构
 data/       合成 Case 数据
 pipeline/   需求翻译、候选选择、卡片生成
