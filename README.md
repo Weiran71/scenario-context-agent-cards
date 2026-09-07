@@ -171,6 +171,11 @@ Context
 - [Hugging Face Space 页面](https://huggingface.co/spaces/LiuXinYan111/scenario-context-agent-cards-demo)：公开 Static Space 源码与文件。
 - [在线 Demo](https://liuxinyan111-scenario-context-agent-cards-demo.static.hf.space/index.html)：在浏览器中切换卡片类型、Case，并调整时间、天气和偏好。
 
+## Paper
+
+- [详细技术报告母稿](docs/technical-report-detailed.md)：逐模块说明方法和案例。
+- [arXiv 英文论文源稿](paper/main.tex)：正式 Paper 结构、流程图、参考文献和复现说明。当前为匿名投稿稿，正式提交前需补充作者信息并在本地或在线 TeX 环境编译 PDF。
+
 ## 快速运行
 
 项目只依赖 Python 3 标准库：
