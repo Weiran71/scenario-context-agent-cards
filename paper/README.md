@@ -4,16 +4,14 @@ This directory contains the English Paper source for the public, fully synthetic
 
 - `main.tex`: arXiv-ready manuscript source.
 - `references.bib`: bibliography with DOI/arXiv links.
+- `main.pdf`: locally compiled eight-page review copy.
 
 The paper intentionally reports the 40-case release as a deterministic reproducibility check, not as evidence of online effectiveness. All user, Event, POI, and environment examples are synthetic.
 
-To compile in an environment with a LaTeX distribution:
+To compile in an environment with a LaTeX distribution (the checked build uses Tectonic):
 
 ```bash
-pdflatex main.tex
-bibtex main
-pdflatex main.tex
-pdflatex main.tex
+tectonic -X compile main.tex
 ```
 
-The current workspace does not include a LaTeX compiler; source-level checks and repository tests are run locally, while final PDF compilation should be performed in a TeX environment before arXiv submission.
+The source compiles locally to an eight-page PDF with the embedded TikZ architecture and workflow figures and resolved bibliography. Before submission, replace the anonymous author line and perform the final arXiv metadata and license review.

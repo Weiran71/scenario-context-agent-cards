@@ -22,13 +22,15 @@
 \definecolor{orange}{HTML}{FCE4D6}
 \hypersetup{colorlinks=true,linkcolor=navy,citecolor=blue,urlcolor=blue}
 \setlist{nosep,leftmargin=*}
+\setlength{\emergencystretch}{3em}
 \newcommand{\method}{\textsc{Context2Card}}
 \newcommand{\silent}{\texttt{stay\_silent}}
 \newcommand{\serve}{\texttt{serve}}
 \newcommand{\needrecord}{\texttt{need\_record}}
 \newcommand{\card}{\texttt{card}}
 
-\title{Context-to-Card: A Scenario-Centered Framework for\n+Context-Aware Agent Services}
+\title{Context-to-Card: A Scenario-Centered Framework for\\
+Context-Aware Agent Services}
 \author{Anonymous Authors}
 \date{}
 
@@ -106,7 +108,7 @@ Figure~\ref{fig:architecture} shows the complete data flow. The dashed boundary 
   node distance=5mm and 8mm,
   box/.style={draw=navy!70,rounded corners=2pt,fill=pale,align=center,minimum height=8mm,text width=29mm,font=\small},
   decision/.style={draw=navy!70,rounded corners=2pt,fill=orange,align=center,minimum height=8mm,text width=27mm,font=\small},
-  out/.style={draw=navy!70,rounded corners=2pt,fill=green,align=center,minimum height=8mm,text width=28mm,font=\small},
+  outbox/.style={draw=navy!70,rounded corners=2pt,fill=green,align=center,minimum height=8mm,text width=28mm,font=\small},
   arr/.style={-{Latex[length=2mm]},thick,draw=navy!80}
 ]
 \node[box] (input) {User, environment, Event, and POI Context};
@@ -116,9 +118,9 @@ Figure~\ref{fig:architecture} shows the complete data flow. The dashed boundary 
 \node[box,below left=8mm and 15mm of need] (event) {Event alert path\\validity, distance, relation};
 \node[box,below right=8mm and 15mm of need] (poi) {POI path\\candidate, coarse rank, fine rank};
 \node[decision,below=18mm of need] (dec) {Service decision\\$\serve$ or $\silent$};
-\node[out,below left=of dec] (silent) {No card\\reason};
-\node[out,below right=of dec] (gen) {Card generation\\copy, action, POI, icon};
-\node[out,below=of gen] (eval) {Validation and rubric evaluation};
+\node[outbox,below left=of dec] (silent) {No card\\reason};
+\node[outbox,below right=of dec] (gen) {Card generation\\copy, action, POI, icon};
+\node[outbox,below=of gen] (eval) {Validation and rubric evaluation};
 \draw[arr] (input)--(norm)--(scene)--(need);
 \draw[arr] (need)--(event);
 \draw[arr] (need)--(poi);
@@ -212,8 +214,8 @@ Otherwise it returns \silent{} with one or more reasons. The numerical threshold
 
 The main copy expresses user relation, present value, and the concrete Event. It is limited to 16 Chinese characters in the source product; the public English paper describes this as a bounded short string rather than imposing a language-specific character count. The sub-copy carries a factual line from the Event. One user-facing Action is emitted, using an executable verb phrase rather than an information label. The icon is selected primarily from Event or POI type, with weather as an auxiliary signal, and is emitted in English and Chinese tags.
 
-\paragraph{Worked example.}
-Given a local user with outdoor and low-intensity preferences, a sunny morning, and an active market 1.3 km away, the record may state: “nearby, currently active market; decide whether surfacing it now lowers discovery cost.” The decision is \serve{}. The card can contain a value-oriented main copy, the factual time-and-place line as sub-copy, the Action “Go see,” and the icon tag `market / market'. If the same Event is expired, the result is \silent{} even when distance and preference relation remain high.
+	\paragraph{Worked example.}
+Given a local user with outdoor and low-intensity preferences, a sunny morning, and an active market 1.3 km away, the record may state: "nearby, currently active market; decide whether surfacing it now lowers discovery cost." The decision is \serve{}. The card can contain a value-oriented main copy, the factual time-and-place line as sub-copy, the Action "Go see," and the icon tag `market / market'. If the same Event is expired, the result is \silent{} even when distance and preference relation remain high.
 
 \section{POI Recommendation Cards}
 
@@ -243,10 +245,10 @@ Candidates are sorted by score and distance, with at most three selected. One PO
 
 \subsection{Content and image-label contract}
 
-The internal theme explains why the selected POIs belong together. The main copy communicates current user value and the concrete type of outing; the sub-copy supplies one line of grounded auxiliary facts rather than a generic ETA. Internal recommendation reasons mention distance, preference overlap, Summary evidence, and structured attributes, but are not shown as user copy. A shared image label is selected with the priority “specific secondary tag, then suitable primary category.” If neither applies, the output explicitly records that no suitable label was found rather than inventing a universal fallback.
+The internal theme explains why the selected POIs belong together. The main copy communicates current user value and the concrete type of outing; the sub-copy supplies one line of grounded auxiliary facts rather than a generic ETA. Internal recommendation reasons mention distance, preference overlap, Summary evidence, and structured attributes, but are not shown as user copy. A shared image label is selected with the priority "specific secondary tag, then suitable primary category." If neither applies, the output explicitly records that no suitable label was found rather than inventing a universal fallback.
 
 \paragraph{Worked example.}
-For an afternoon user who prefers outdoor, low-intensity activities, the need record can be “find an open, nearby, low-decision-cost outdoor option.” Two nearby open POIs whose Summaries describe a greenway walk and an easy cycling route can share the internal theme “nearby light outdoor.” A short main copy and a factual sub-copy are generated only after these POIs have been selected. A distant POI with a matching “outdoor” tag is filtered before ranking.
+For an afternoon user who prefers outdoor, low-intensity activities, the need record can be "find an open, nearby, low-decision-cost outdoor option." Two nearby open POIs whose Summaries describe a greenway walk and an easy cycling route can share the internal theme "nearby light outdoor." A short main copy and a factual sub-copy are generated only after these POIs have been selected. A distant POI with a matching "outdoor" tag is filtered before ranking.
 
 \section{Service Decision and Card Generation}
 
