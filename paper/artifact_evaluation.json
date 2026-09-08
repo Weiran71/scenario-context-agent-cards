@@ -1,0 +1,86 @@
+{
+  "scope": "artifact_contract_checks",
+  "case_count": 40,
+  "distribution": {
+    "card_type": {
+      "event": 20,
+      "poi": 20
+    },
+    "expected_decision": {
+      "serve": 20,
+      "stay_silent": 20
+    },
+    "card_and_decision": {
+      "event_serve": 10,
+      "poi_serve": 10,
+      "event_stay_silent": 10,
+      "poi_stay_silent": 10
+    },
+    "event_themes": {
+      "周末市集": 4,
+      "亲子手作": 4,
+      "户外音乐会": 4,
+      "城市展览": 4,
+      "夜间灯会": 4
+    },
+    "poi_candidate_count": {
+      "3": 10,
+      "2": 10
+    }
+  },
+  "determinism": {
+    "identical_rerun": true
+  },
+  "expected_decision_agreement": 40,
+  "irrelevant_context_invariance": 40,
+  "silent_card_null": 20,
+  "poi_order_invariance": 20,
+  "summary_non_increasing_after_ablation": {
+    "comparisons": 30,
+    "passes": 30
+  },
+  "event_negative_failure_modes": {
+    "inactive": 4,
+    "too_far": 3,
+    "weak_relation": 3
+  },
+  "event_one_factor_mutations": {
+    "status": {
+      "cases": 10,
+      "expected_silence": 10,
+      "agreement": 10
+    },
+    "distance_km": {
+      "cases": 10,
+      "expected_silence": 10,
+      "agreement": 10
+    },
+    "relevance": {
+      "cases": 10,
+      "expected_silence": 10,
+      "agreement": 10
+    }
+  },
+  "poi_one_factor_mutations": {
+    "status": {
+      "cases": 10,
+      "expected_silence": 10,
+      "agreement": 10
+    },
+    "distance_km": {
+      "cases": 10,
+      "expected_silence": 10,
+      "agreement": 10
+    }
+  },
+  "poi_channel_probe": {
+    "positive_case_count": 10,
+    "mean_across_cases": {
+      "mean_full_score": 0.6188,
+      "mean_score_without_summary": 0.4854,
+      "mean_score_without_preference": 0.4243,
+      "summary_mean_delta": 0.1333,
+      "preference_mean_delta": 0.1944
+    }
+  }
+}

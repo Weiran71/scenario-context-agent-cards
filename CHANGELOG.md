@@ -12,4 +12,6 @@
 - 新增《技术报告母稿》：完整说明 Context、情景与需求翻译、事件提醒卡、POI 推荐卡、服务决策、正负向数据集、Taste/Rubric、Demo 和公开边界，并明确方法目标与当前透明基线的差异。
 - 新增《详细技术报告母稿》：补充数据集生产与 Case 运行的双链路、通用模块逐项展开、事件卡 PATH-1/2/3/4、POI 候选/粗排/精排/内容生成、逐节点案例、校验清单及实现差异说明。
 - 新增 arXiv 论文包：英文 `main.tex`、参考文献和编译说明；包含正式问题定义、相关工作、算法契约、两类卡片流程图、合成数据复现结果、局限性与责任使用边界。
-- 完成论文真实编译校验：修正 TikZ 图形样式和字体问题，生成 9 页 `main.pdf`，包含 4 张架构/流程图，图、引用和分页检查通过。
+- 完成论文真实编译校验：修正 TikZ 图形样式和字体问题，生成 11 页 `main.pdf`，包含 4 张架构/流程图，图、引用和分页检查通过。
+- 增加论文 Artifact-level behavioral checks：确定性重跑、无关 Context 不变性、Event/POI 门控变异、POI Summary/偏好通道不变量，并将结果写入 `paper/artifact_evaluation.json`。
+- 收紧论文相关工作、贡献边界、utility/abstention 形式化、Claims/Evidence 表、实现/扩展对照表和 0--2 Rubric anchors；补充 RecSys、NAACL、ICML、RecSim 等一手参考。

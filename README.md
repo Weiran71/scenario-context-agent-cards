@@ -175,7 +175,9 @@ Context
 
 - [详细技术报告母稿](docs/technical-report-detailed.md)：逐模块说明方法和案例。
 - [arXiv 英文论文源稿](paper/main.tex)：正式 Paper 结构、流程图、参考文献和复现说明。
-- [arXiv 论文编译 PDF](paper/main.pdf)：已通过 Tectonic 编译的九页审阅版。当前仍为匿名投稿稿，正式提交前需补充作者信息并完成 arXiv 元数据、分类和许可证审查。
+- [arXiv 论文编译 PDF](paper/main.pdf)：已通过 Tectonic 编译的十一页审阅版。当前仍为匿名投稿稿，正式提交前需补充作者信息并完成 arXiv 元数据、分类和许可证审查。
+- [Artifact 评估脚本](experiments/evaluate_artifact.py)：确定性重跑、无关字段不变性、门控变异和 Summary/偏好通道不变量检查。
+- [Artifact 评估结果](paper/artifact_evaluation.json)：与论文表格一致的可复现实验结果；只证明实现契约，不代表线上效果。
 
 ## 快速运行
 
@@ -199,6 +201,7 @@ data/       合成 Case 数据
 pipeline/   需求翻译、候选选择、卡片生成
 validators/ 结构和公开边界校验
 examples/   运行结果与完整案例
+experiments/ 论文发布前的确定性契约检查
 tests/      基础回归测试
 ```
 

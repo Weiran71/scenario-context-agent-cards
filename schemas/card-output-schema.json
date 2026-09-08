@@ -1,14 +1,93 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Public Context2Card Output",
+  "$defs": {
+    "event_card": {
+      "type": "object",
+      "required": ["main_copy", "sub_copy", "action", "icon_tag"],
+      "properties": {
+        "main_copy": {"type": "string"},
+        "sub_copy": {"type": "string"},
+        "action": {"type": "string"},
+        "icon_tag": {
+          "type": "object",
+          "required": ["en", "zh"],
+          "properties": {"en": {"type": "string"}, "zh": {"type": "string"}},
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": true
+    },
+    "poi_card": {
+      "type": "object",
+      "required": ["theme", "main_copy", "sub_copy"],
+      "properties": {
+        "theme": {"type": "string"},
+        "main_copy": {"type": "string"},
+        "sub_copy": {"type": "string"}
+      },
+      "additionalProperties": true
+    }
+  },
   "type": "object",
   "required": ["case_id", "card_type", "decision", "need_record", "decision_reasons"],
   "properties": {
-    "case_id": {"type": "string"},
+    "case_id": {"type": "string", "minLength": 1},
     "card_type": {"enum": ["event", "poi"]},
     "decision": {"enum": ["serve", "stay_silent"]},
-    "need_record": {"type": "object"},
+    "expected_decision": {"enum": ["serve", "stay_silent"]},
+    "source": {"type": "string"},
+    "need_record": {
+      "type": "object",
+      "required": ["situation", "need", "constraints", "evidence", "confidence"],
+      "properties": {
+        "situation": {"type": "string"},
+        "need": {"type": "string"},
+        "constraints": {"type": "array", "items": {"type": "string"}},
+        "evidence": {"type": "array", "items": {"type": "string"}},
+        "evidence_refs": {"type": "array", "items": {"type": "string"}},
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1}
+      },
+      "additionalProperties": true
+    },
+    "decision_reasons": {"type": "array", "items": {"type": "string"}},
     "card": {"type": ["object", "null"]},
-    "decision_reasons": {"type": "array", "items": {"type": "string"}}
-  }
+    "candidate_pool": {"type": "array", "items": {"type": "string"}},
+    "selected_pois": {
+      "type": "array",
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "required": ["poi_id", "name"],
+        "properties": {
+          "poi_id": {"type": "string"},
+          "name": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"decision": {"const": "serve"}}, "required": ["decision"]},
+      "then": {"required": ["card"], "properties": {"card": {"type": "object"}}}
+    },
+    {
+      "if": {"properties": {"decision": {"const": "stay_silent"}}, "required": ["decision"]},
+      "then": {"properties": {"card": {"type": "null"}}}
+    },
+    {
+      "if": {"properties": {"card_type": {"const": "poi"}}, "required": ["card_type"]},
+      "then": {"required": ["candidate_pool", "selected_pois"]}
+    },
+    {
+      "if": {"properties": {"card_type": {"const": "event"}, "decision": {"const": "serve"}}, "required": ["card_type", "decision"]},
+      "then": {"properties": {"card": {"$ref": "#/$defs/event_card"}}}
+    },
+    {
+      "if": {"properties": {"card_type": {"const": "poi"}, "decision": {"const": "serve"}}, "required": ["card_type", "decision"]},
+      "then": {"properties": {"card": {"$ref": "#/$defs/poi_card"}}}
+    }
+  ],
+  "additionalProperties": true
 }

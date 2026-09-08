@@ -4,9 +4,48 @@
   "type": "object",
   "required": ["user", "environment"],
   "properties": {
-    "user": {"type": "object", "required": ["local_status", "preference_tags"]},
-    "environment": {"type": "object", "required": ["district", "local_hour", "weather"]},
-    "event": {"type": "object"},
-    "poi_candidates": {"type": "array", "items": {"type": "object"}}
+    "user": {
+      "type": "object",
+      "required": ["local_status", "preference_tags"],
+      "properties": {
+        "local_status": {"enum": ["local", "visitor"]},
+        "preference_tags": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": true
+    },
+    "environment": {
+      "type": "object",
+      "required": ["district", "local_hour", "weather"],
+      "properties": {
+        "district": {"type": "string"},
+        "local_hour": {"type": "integer", "minimum": 0, "maximum": 23},
+        "weather": {"type": "string"}
+      },
+      "additionalProperties": true
+    },
+    "event": {
+      "type": "object",
+      "properties": {
+        "theme": {"type": "string"},
+        "status": {"type": "string"},
+        "distance_km": {"type": "number", "minimum": 0},
+        "relevance": {"type": "number", "minimum": 0, "maximum": 1}
+      },
+      "additionalProperties": true
+    },
+    "poi_candidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "poi_id": {"type": "string"},
+          "name": {"type": "string"},
+          "distance_km": {"type": "number", "minimum": 0},
+          "status": {"type": "string"},
+          "tags": {"type": "array", "items": {"type": "string"}}
+        },
+        "additionalProperties": true
+      }
+    }
   }
 }
